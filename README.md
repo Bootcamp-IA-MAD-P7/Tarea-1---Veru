@@ -60,7 +60,7 @@ templates: La carpeta donde almacenamos nuestros templates HTML para renderizar 
 
 
 4. ¿Cuál es el flujo de datos entre un formulario HTML y la base de datos en Django?
-   Django proporciona una clase Form que se utiliza para crear formularios HTML, o mejor dicho, sus campos, ya que con los mismos podemos describir cuales son los campos, de qué tipo (enteros, flotantes, campos de textos, listados...) y cómo funciona y aparece. Es similar a la clase ModelForm que crea un formulario utilizando el modelo, pero no requiere el modelo, por lo tanto, son más manuales y flexibles que estos últimos.
+Django proporciona una clase Form que se utiliza para crear formularios HTML, o mejor dicho, sus campos, ya que con los mismos podemos describir cuales son los campos, de qué tipo (enteros, flotantes, campos de textos, listados...) y cómo funciona y aparece. Es similar a la clase ModelForm que crea un formulario utilizando el modelo, pero no requiere el modelo, por lo tanto, son más manuales y flexibles que estos últimos.
 
 Un formulario en Django es una clase de Python que representa una estructura de entrada de datos, mapea campos HTML (<input>, <select>, etc.) y aplica validaciones automáticas.
 
@@ -87,7 +87,7 @@ Necesitamos este comando para verificar y probar nuestras aplicaciones y sitios 
 
 
 6. ¿Cómo funciona el Admin de Django?
-jango Admin es una aplicación que viene instalada por defecto en cualquier proyecto creado con el comando:
+Django Admin es una aplicación que viene instalada por defecto en cualquier proyecto creado con el comando:
 
 django-admin startproject
 Su objetivo es ofrecer una interfaz de gestión para los modelos de tu aplicación. Gracias a este panel, puedes crear usuarios, agregar productos, revisar comentarios o administrar categorías sin construir un panel desde cero.
