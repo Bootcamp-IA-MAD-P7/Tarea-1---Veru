@@ -68,19 +68,20 @@ Un formulario en Django es una clase de Python que representa una estructura de 
 CRUD, para qué es cada una? (Por ejemplo: startapp, makemigrations, migrate,
 runserver, ModelForm, admin, etc.)
 
-> django-admin startproject <project_name>
+django-admin startproject <project_name>
 creará un directorio/carpeta con el proporcionado en el comando dentro del directorio de trabajo actual.
 
-> python manage.py makemigrations
+python manage.py makemigrations
 Para convertir el código de Python escrito para las clases modelo (que además representa tablas en la base de datos) en consultas de base de datos.
 
-> python manage.py migrate
+python manage.py migrate
 Necesitamos ejecutar este comando para crear tablas en la base de datos especificada en función de los modelos de clase de Python definidos.
 
-> python manage.py startapp <app_name>
+python manage.py startapp <app_name>
+
 Un proyecto Django es una colección de aplicaciones y configuraciones para un sitio web. Un proyecto puede tener varias aplicaciones dentro y una aplicación puede incluirse en varios proyectos de Django. Este comando es necesario para crear una aplicación Django dentro del proyecto Django que generará la estructura de directorio básica de una aplicación Django.
 
-> python manage.py runserver 
+python manage.py runserver 
 Necesitamos este comando para verificar y probar nuestras aplicaciones y sitios web de Django ejecutándolos en el servidor local. 
 
 
