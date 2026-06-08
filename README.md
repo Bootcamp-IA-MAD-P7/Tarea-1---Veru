@@ -1,98 +1,120 @@
 1. ¿Qué es un CRUD y cuál es su propósito en el desarrollo de aplicaciones web?
-Añade un ejemplo de aplicación web que use una estructura de CRUD
+CRUD se refiere a las cuatro operaciones básicas que una aplicación debería poder realizar: Create (Crear), Read (Leer), Update (Actualizar) y Delete (Eliminar).
 
-CRUD se refiere a las cuatro operaciones básicas que una aplicación debería poder hacer- "Create - Crear", "Read - Leer", "Update - Actualizar" y "Delete - eliminar"
+En una aplicación, el usuario debe poder:
 
-En una aplicación, el usuario debe de ser capaz de crear datos, poder leerlos y tener acceso a ellos desde la interfaz gráfica, actualizar o editar los datos y ser capaz de eliminarlos.
+Crear datos.
+Leerlos y acceder a ellos desde la interfaz gráfica.
+Actualizarlos o editarlos.
+Eliminarlos.
+Las aplicaciones CRUD completas constan de tres partes:
 
-Las aplicaciones CRUD completas, consisten de 3 partes: una API (o servidor), una base de datos y una interfaz de usuario (IU/UI - user interface).
-
-La API contiene código y métodos, la base de datos almacena y ayuda al usuario a extraer información, mientras que la interfaz de usuario ayuda a los usuarios a interactuar con la aplicación.
-
-**Wordpress es un ejemplo, ya que depende en gran medida de las operaciones CRUD** para gestionar el contenido almacenado en sus bases de datos.
+API (servidor) — contiene código y métodos.
+Base de datos — almacena y permite extraer la información.
+Interfaz de usuario (UI) — permite la interacción del usuario con la aplicación.
+Ejemplo: WordPress depende en gran medida de las operaciones CRUD para gestionar el contenido almacenado en sus bases de datos.
 
 2. ¿Qué son los patrones de arquitectura en desarrollo de software?
-Un patrón arquitectónico es una solución general y reutilizable a un problema común en la arquitectura de software dentro de un contexto dado. Los patrones arquitectónicos son similares al patrón de diseño de software pero tienen un alcance más amplio.
+Un patrón arquitectónico es una solución general y reutilizable a un problema común en la arquitectura de software dentro de un contexto dado. Tienen un alcance más amplio que los patrones de diseño.
 
-○ ¿Qué es el patrón MVC (Modelo–Vista–Controlador)?
-Este patrón, también conocido como patrón MVC, divide una aplicación interactiva en 3 partes, como
+¿Qué es el patrón MVC (Modelo–Vista–Controlador)?
+MVC divide una aplicación en tres partes:
 
-modelo — contiene la funcionalidad y los datos básicos
-vista : muestra la información al usuario (se puede definir más de una vista)
-controlador : maneja la entrada del usuario
-Esto se hace para separar las representaciones internas de información de las formas en que se presenta y acepta la información del usuario. Desacopla los componentes y permite la reutilización eficiente del código.
+Modelo — contiene la funcionalidad y los datos básicos.
+Vista — muestra la información al usuario (puede haber varias vistas).
+Controlador — maneja la entrada del usuario.
+Objetivo: separar la representación interna de la información de las formas de presentación y aceptación de datos, favoreciendo el desacoplamiento y la reutilización.
 
-○ ¿Qué es el patrón MVT (Modelo–Vista–Template)?
-En Django, el controlador sigue estando presente, nada más que de una manera intrínseca, ya que todo el framework Django es el controlador.
+¿Qué es el patrón MVT (Modelo–Vista–Template)?
+En Django el "controlador" está integrado en el framework; la separación es:
 
-Modelo: Maneja todo lo relacionado con la información, esto incluye como acceder a esta, la validación, relación entre los datos y su comportamiento.
+Modelo — maneja acceso a datos, validación y comportamiento.
+Vista — enlace entre modelo y template; decide qué mostrar y qué template usar.
+Template — define cómo se presenta la información (HTML).
+Diferencias clave (MVC vs MVT)
+Elemento	MVC	MVT (Django)
+M	Modelo: interactúa con la BD	Model: misma función
+V	Vista: genera HTML	View: similar al controlador de MVC
+C / T	Controlador: recibe solicitudes y controla flujo	Template: responsable del HTML
+Nota: Django implementa la variante conocida como MVT, que conceptualmente se alinea con MVC.
 
-Vista: Es un enlace entre el modelo y el template. Decide que información sera mostrada y por cual template.
+3. ¿Cómo se estructura un proyecto en Django?
+En Django, un proyecto está compuesto por una o varias aplicaciones (apps). Cada app suele contener:
 
-Template: Decide como sera mostrada la información.
+models.py — clases que representan tablas y datos de la base de datos.
+views.py — funciones o clases que manejan solicitudes HTTP y devuelven respuestas.
+templates/ — archivos HTML para renderizar páginas.
+urls.py — mapeo de rutas URL a vistas (a nivel de app y proyecto).
+Flujo básico
+El navegador solicita una URL.
+urls.py dirige la solicitud a una view.
+La view utiliza models para obtener o modificar datos.
+La view renderiza un template y retorna la respuesta HTML.
+¿Para qué se usa el signo %% en los templates?
+No es sintaxis estándar de Django. En Django se usan:
 
-○ Diferencias entre MVC y MVT.
-M se escribe todo como Modelo, que principalmente encapsula el acceso a la capa de la base de datos y realiza operaciones de agregar, eliminar, modificar y verificar datos en la base de datos.
+{% ... %} para tags (lógica).
+{{ ... }} para variables.
+%% puede aparecer en otros motores o como escape en ciertas herramientas, pero en templates Django no tiene significado propio.
 
-V se escribe como Ver, que se utiliza para encapsular el resultado y generar el contenido html que se muestra en la página.
+4. Flujo de datos entre un formulario HTML y la base de datos en Django
+Form define estructura y validaciones de formularios HTML (campos, tipos, validadores).
+ModelForm genera un formulario a partir de un modelo (mapea campos del modelo al formulario).
+Flujo típico:
 
-C se escribe como controlador, que se usa para recibir solicitudes, procesar la lógica comercial, interactuar con el modelo y la vista, y devolver resultados.
-
-M se escribe como Model, que tiene la misma función que M en MVC, y es responsable de interactuar con la base de datos y procesar los datos.
-
-V se escribe como View, que tiene la misma función que C en MVC. Recibe solicitudes, procesa negocios y devuelve respuestas.
-
-T está escrito como Template, que tiene la misma función que V en MVC, y es responsable de encapsular y construir el html devuelto.
-
-○ ¿Cuál de estos dos patrones se usa en Django?
-MVC
-
-3. ¿Cómo se estructura un proyecto en Django? Explicar brevemente el rol de los
-modelos, vistas, templates y URLs.
-
-En Django, una aplicación es un módulo independiente que se utiliza para organizar nuestro código. Una aplicación puede contener varios modelos, vistas y templates. Las aplicaciones se organizan en carpetas dentro de la carpeta app del proyecto. Cada aplicación tiene su propio directorio y contiene los siguientes archivos importantes:
-
-models.py: El archivo donde definimos nuestros modelos, que son clases que representan los datos de nuestra base de datos.
-views.py: Un módulo que contiene las vistas, que son funciones que manejan las solicitudes HTTP y devuelven respuestas.
-templates: La carpeta donde almacenamos nuestros templates HTML para renderizar las páginas web.
-
-○ ¿Para qué se usa el signo “%%” en los templates?
-
-
-4. ¿Cuál es el flujo de datos entre un formulario HTML y la base de datos en Django?
-Django proporciona una clase Form que se utiliza para crear formularios HTML, o mejor dicho, sus campos, ya que con los mismos podemos describir cuales son los campos, de qué tipo (enteros, flotantes, campos de textos, listados...) y cómo funciona y aparece. Es similar a la clase ModelForm que crea un formulario utilizando el modelo, pero no requiere el modelo, por lo tanto, son más manuales y flexibles que estos últimos.
-
-Un formulario en Django es una clase de Python que representa una estructura de entrada de datos, mapea campos HTML (<input>, <select>, etc.) y aplica validaciones automáticas.
-
-5. ¿Qué herramientas o comandos ofrece Django para facilitar el desarrollo de un
-CRUD, para qué es cada una? (Por ejemplo: startapp, makemigrations, migrate,
-runserver, ModelForm, admin, etc.)
-
-django-admin startproject <project_name>
-creará un directorio/carpeta con el proporcionado en el comando dentro del directorio de trabajo actual.
-
-python manage.py makemigrations
-Para convertir el código de Python escrito para las clases modelo (que además representa tablas en la base de datos) en consultas de base de datos.
-
-python manage.py migrate
-Necesitamos ejecutar este comando para crear tablas en la base de datos especificada en función de los modelos de clase de Python definidos.
-
-python manage.py startapp <app_name>
-
-Un proyecto Django es una colección de aplicaciones y configuraciones para un sitio web. Un proyecto puede tener varias aplicaciones dentro y una aplicación puede incluirse en varios proyectos de Django. Este comando es necesario para crear una aplicación Django dentro del proyecto Django que generará la estructura de directorio básica de una aplicación Django.
-
-python manage.py runserver 
-Necesitamos este comando para verificar y probar nuestras aplicaciones y sitios web de Django ejecutándolos en el servidor local. 
+La view muestra un formulario (instancia de Form o ModelForm) en un template.
+El usuario envía el formulario (método POST).
+La view instancia el formulario con request.POST y llama a is_valid().
+Si es válido, ModelForm.save() (o manipulación directa del Model) crea/actualiza registros en la BD.
+La view redirige o renderiza la respuesta adecuada.
+py
 
 
+# Ejemplo mínimo en views.py
+from django.shortcuts import render, redirect
+from .forms import MiModeloForm
 
+def crear_objeto(request):
+    if request.method == "POST":
+        form = MiModeloForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lista')
+    else:
+        form = MiModeloForm()
+    return render(request, 'miapp/form.html', {'form': form})
+5. Herramientas y comandos de Django útiles para CRUD
+django-admin startproject <project_name> — crea la estructura inicial del proyecto.
+python manage.py startapp <app_name> — crea una app dentro del proyecto.
+python manage.py makemigrations — genera migraciones a partir de los modelos.
+python manage.py migrate — aplica migraciones y crea/actualiza tablas en la BD.
+python manage.py runserver — ejecuta el servidor de desarrollo local.
+ModelForm — facilita create/update basado en modelos.
+admin — panel administrativo para gestionar modelos (CRUD).
 6. ¿Cómo funciona el Admin de Django?
-Django Admin es una aplicación que viene instalada por defecto en cualquier proyecto creado con el comando:
+Django Admin es una aplicación incluida por defecto que proporciona una interfaz de gestión para los modelos. Permite crear, editar y eliminar registros sin construir un panel desde cero; hay que registrar los modelos en admin.py para que aparezcan.
 
-django-admin startproject
-Su objetivo es ofrecer una interfaz de gestión para los modelos de tu aplicación. Gracias a este panel, puedes crear usuarios, agregar productos, revisar comentarios o administrar categorías sin construir un panel desde cero.
+py
 
-7. ¿Django usa la arquitectura REST? ¿Qué es Django Rest Framework?
-   
-Django Rest Framework es una aplicación Django que permite construir proyectos software bajo la arquitectura REST, incluye gran cantidad de código para reutilizar (Views, Resources, etc.) y una interfaz administrativa desde la cual es posible realizar pruebas sobre las operaciones HTTP como lo son: POST y GET.
 
+# admin.py
+from django.contrib import admin
+from .models import MiModelo
+
+@admin.register(MiModelo)
+class MiModeloAdmin(admin.ModelAdmin):
+    list_display = ('id', 'campo1', 'campo2')
+7. ¿Django usa la arquitectura REST? ¿Qué es Django REST Framework?
+Django no es un framework REST por sí mismo, pero permite construir APIs HTTP.
+Django REST Framework (DRF) es una librería que facilita crear APIs RESTful: serializers, vistas genéricas, routers, autenticación y una interfaz de exploración de la API para probar operaciones HTTP (GET, POST, PUT, DELETE, ...).
+py
+
+
+# Ejemplo mínimo con DRF (views.py)
+from rest_framework import viewsets
+from .models import MiModelo
+from .serializers import MiModeloSerializer
+
+class MiModeloViewSet(viewsets.ModelViewSet):
+    queryset = MiModelo.objects.all()
+    serializer_class = MiModeloSerializer
